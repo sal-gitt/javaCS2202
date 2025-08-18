@@ -1,6 +1,6 @@
 import java.util.*;
 
- public class Employee {
+ class Employee {
         String Emp_name;
         String Emp_id;
         String Address;
@@ -19,7 +19,7 @@ import java.util.*;
         
     }
     
-    public class Programmer extends Employee {
+    class Programmer extends Employee {
     	float bp;	
     	@Override
     	void getSalary() {
@@ -29,7 +29,7 @@ import java.util.*;
     	}	
     }
     
-    public class AssistantProfessor extends Employee {
+    class AssistantProfessor extends Employee {
     	float bp;
     	@Override
     	void getSalary() {
@@ -39,7 +39,7 @@ import java.util.*;
     	}
     }
     
-    public class AssociateProfessor extends Employee {
+    class AssociateProfessor extends Employee {
     	float bp;
     	@Override
     	void getSalary() {
@@ -49,7 +49,7 @@ import java.util.*;
     	}
     }
     
-    public class Professor extends Employee {
+    class Professor extends Employee {
     	float bp;
     	@Override
     	void getSalary() {
@@ -76,11 +76,12 @@ class Ems {
                     int limit = sc.nextInt();
                     sc.nextLine(); 
                     for (int i = 0; i < limit; i++) {
-                        System.out.println("Choose Designation (1-4):\n 1.Programmer\n 2.Assistant Professor\n 3.Associate Professor\n 4. Professor");
+                        System.out.println("Choose Designation (1-4):\n 1.Programmer\n 2.Assistant Professor\n 3.Associate Professor\n 4.Professor");
                         opt2 = sc.nextInt();
                         switch (opt2) {
                         case 1:
                         	Programmer programmer = new Programmer();
+                        	sc.nextLine();
 	                        System.out.println("Enter the name of employee: ");
         	                programmer.Emp_name = sc.nextLine();
         	                System.out.println("Enter the employee ID: ");
@@ -97,6 +98,7 @@ class Ems {
         	                break;
                         case 2:
                         	AssistantProfessor assistantprof = new AssistantProfessor();
+                        	sc.nextLine();
 	                        System.out.println("Enter the name of employee: ");
         	                assistantprof.Emp_name = sc.nextLine();
         	                System.out.println("Enter the employee ID: ");
@@ -113,6 +115,7 @@ class Ems {
         	                break;
                         case 3:
                         	AssociateProfessor associateprof = new AssociateProfessor();
+                        	sc.nextLine();
 	                        System.out.println("Enter the name of employee: ");
         	                associateprof.Emp_name = sc.nextLine();
         	                System.out.println("Enter the employee ID: ");
@@ -129,6 +132,7 @@ class Ems {
         	                break;
         	        case 4:
                         	Professor prof = new Professor();
+                        	sc.nextLine();
 	                        System.out.println("Enter the name of employee: ");
         	                prof.Emp_name = sc.nextLine();
         	                System.out.println("Enter the employee ID: ");

@@ -18,12 +18,12 @@ class Cms {
         while (bool) {
             System.out.println("Choose any options (1-6):\n 1.Add New Contacts\n 2.Search For Contact\n 3.Update Existing Contacts\n 4.Delete Contacts\n 5.Print All Contacts\n 6. Exit");
             int opt = sc.nextInt();
-            sc.nextLine(); // Consume newline character
+            sc.nextLine();
             switch (opt) {
                 case 1:
                     System.out.println("Enter the no.of contacts: ");
                     int limit = sc.nextInt();
-                    sc.nextLine(); // Consume newline character
+                    sc.nextLine(); 
                     for (int i = 0; i < limit; i++) {
                         Info info = new Info();
                         System.out.println("Enter the name of contact: ");

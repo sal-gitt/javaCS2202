@@ -1,11 +1,23 @@
 import java.util.*;
+import java.lang.reflect.Constructor;
 
+ class Snapshot {
+ 	void 
+ }
+ 
  class Employee {
         String Emp_name;
         String Emp_id;
         String Address;
         String Mail_id;
         String Mobile_no;
+        
+        public Employee (Employee other) {
+            this.Emp_name = other.Emp_name;
+            this.Address = other.Address;
+            this.Mail_id = other.Mail_id;
+            this.Mobile_no = other.Mobile_no;
+        }
         
         void updateInfo(String Emp_name, String Address, String Mail_id, String Mobile_no) {
             this.Emp_name = Emp_name;
@@ -20,7 +32,10 @@ import java.util.*;
     }
     
     class Programmer extends Employee {
-    	float bp;	
+    	float bp;
+    	public Programmer (Programmer other) {
+    	super(other);
+    	}	
     	@Override
     	void getSalary() {
 	    	float gross = (1 + (97 + 10)/100) * bp;
@@ -31,6 +46,9 @@ import java.util.*;
     
     class AssistantProfessor extends Employee {
     	float bp;
+    	public AssistantProfessor (AssistantProfessor other) {
+    	super(other);
+    	}
     	@Override
     	void getSalary() {
 	    	float gross = (1 + (110 + 20)/100) * bp;
@@ -41,6 +59,9 @@ import java.util.*;
     
     class AssociateProfessor extends Employee {
     	float bp;
+    	public AssociateProfessor (AssociateProfessor other) {
+    	super(other);
+    	}
     	@Override
     	void getSalary() {
 	    	float gross = (1 + (130 + 30)/100) * bp;
@@ -51,6 +72,9 @@ import java.util.*;
     
     class Professor extends Employee {
     	float bp;
+    	public Professor (Professor other) {
+    	super(other);
+    	}
     	@Override
     	void getSalary() {
 	    	float gross = (1 + (140 + 40)/100) * bp;
@@ -63,10 +87,11 @@ class Ems {
     
     public static void main(String[] args) {
         ArrayList<Employee> ems = new ArrayList<>();
+        ArrayList<Employee> snapshot = new ArrayList<>();
         Scanner sc = new Scanner(System.in);
         boolean bool = true;
         while (bool) {
-            System.out.println("Choose any options (1-6):\n 1.Add New Employee Details\n 2.Search For Employee\n 3.Update Existing Employee Details\n 4.Delete Employee\n 5.Print All Employee Details\n 6. Exit");
+            System.out.println("Choose any options (1-6):\n 1.Add New Employee Details\n 2.Search For Employee\n 3.Update Existing Employee Details\n 4.Delete Employee\n 5.Print All Employee Details\n 6.Create a snapshot\n 7.Revert Previous Changes\n 8. Exit");
             int opt1 = sc.nextInt();
             int opt2;
             sc.nextLine();
@@ -203,6 +228,28 @@ class Ems {
                     }
                     break;
                 case 6:
+			for (Employee employee : ems) { 
+                		Constructor<employee> constructor = employee.class.getConstructor(Object.class);
+				snapshot.add(constructor.newInstance(employee));
+				}
+			break;
+		case 7:
+			System.out.println("1.Revert Back To Last Snapshot\n 2.Undo Last Operation");
+			int opt3 = sc.nextInt();
+			switch(opt3) {
+			case 1:
+				ems.clear();
+				for (Employee employee : snapshot) { 
+                		Constructor<employee> constructor = employee.class.getConstructor(Object.class);
+				ems.add(constructor.newInstance(employee));
+				}	
+				break;
+			case 2:
+			
+				break;
+			}
+			break;
+                case 8:
                     bool = false;
                     break;
             }

@@ -55,14 +55,12 @@ class CircularEmployeeStack {
     private int count = 0;
 
     public void push(Employee employee) {
-        try {
             Constructor<?> constructor = employee.getClass().getConstructor(employee.getClass());
             Employee copy = (Employee) constructor.newInstance(employee);
             top = (top + 1) % SIZE;
             stack[top] = copy;
             if (count < SIZE) count++;
-        } catch (Exception e) {}
-    }
+            }
 
     public Employee pop() {
         if (count == 0) return null;
@@ -81,12 +79,9 @@ class Snapshot {
     public void write(ArrayList<Employee> targetList, ArrayList<Employee> sourceList) {
         targetList.clear();
         for (Employee employee : sourceList) {
-            try {
                 Constructor<?> constructor = employee.getClass().getConstructor(employee.getClass());
                 Employee copy = (Employee) constructor.newInstance(employee);
                 targetList.add(copy);
-            } catch (Exception e) {}
-        }
     }
 }
 
